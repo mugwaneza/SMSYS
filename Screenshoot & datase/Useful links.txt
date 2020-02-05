@@ -1,0 +1,25 @@
+     
+    JSF : Connection to mysql database and project creation
+        ----------------------------------------------------
+
+        1. https://www.javaguicodexample.com/javawebmysqljspjstljsf5_1.html
+        2. https://www.javaguicodexample.com/javawebmysqljspjstljsf5.html
+
+     create JSF project : https://examples.javacodegeeks.com/enterprise-java/jsf/jsf-application-netbeans-example/
+
+    - Managed Bean –> is The Model Facelets is the official template system for JSF
+   - Facelets -> allows re-use by including the content resides in a separate file
+  -Each JSF application needs a faces-config.xml configuration file. It describes 
+    the application properties, such as navigation rules between the JSF pages, default bean 
+      instances, default values of some variables, message bundles, and so on.
+    https://help.sap.com/doc/saphelp_nw74/7.4.16/en-us/4a/72d62029fa72dfe10000000a42189b/content.htm?no_cache=true
+    
+   https://www.vogella.com/tutorials/JavaServerFaces/article.html
+   .web.xml - General web application configuration file
+   .faces-config.xml - Contains the configuration of the JSF application
+
+    JSF CRUD: https://chillyfacts.com/jsf-mysql-crud-create-read-update-delete-project-jsf-tutorial-part-10/
+      Fetch data with mysql:https://www.javacodegeeks.com/2015/02/jsf-list-example.html
+
+    put boostrap in JSF : https://www.codementor.io/@howardungar/getting-started-with-bootstrap-and-jsf-6bofntdov
+                          https://examples.javacodegeeks.com/enterprise-java/jsf/jsf-bootstrap-example/ 

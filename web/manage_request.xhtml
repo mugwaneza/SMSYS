@@ -1,0 +1,83 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:pt="http://java.sun.com/jsf/passthrough"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+  <ui:composition template="/WEB-INF/include/template.xhtml">
+   
+      <ui:define name="head">
+        <!-- Custom styles for this template -->
+        <h:outputStylesheet name="css/style.css"/>
+    </ui:define>
+      
+    <ui:define name="body">
+        
+                     <ui:include src="include_navmenu.xhtml"/>  <!-- include navbar -->
+
+        <div class="container">
+            
+          <!--Tabbed nav-->  
+          <div class="col-lg-10 ">
+              <div class="tabsdiv offset-3 mt-5">
+                  <h3 class="text-danger">Distribute material to staff</h3>
+        <nav>
+        <div class="nav nav-tabs " id="nav-tab" role="tablist">
+          <a class="nav-item nav-link active" id="nav-home-tab" data-toggle="tab" href="#nav-home" role="tab" aria-controls="nav-home" aria-selected="true">Distribute</a>
+          <a class="nav-item nav-link" id="nav-profile-tab" data-toggle="tab" href="#nav-profile" role="tab" aria-controls="nav-profile" aria-selected="false">report</a>
+        </div>
+        </nav>
+        <div class="tab-content" id="nav-tabContent">
+            <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
+                         
+                <h:form id="StaffForm" styleClass="form-horizontal col-md-8 offset-2 mt-5">
+            
+                    
+                      <div class="tabsdiv offset-3 mt-5">
+                    <h5 class="text-success">Donate materials to staff</h5>
+                      </div><br></br>
+              
+                     <div class="form-group">
+                     <h:outputLabel value="Staff name"  styleClass="control-label " />   
+                     <h:selectOneMenu required="true"  value = "#{Staffhistory.staff_id}" id="staffid" styleClass="form-control" requiredMessage="Staff name is required"> 
+                      <f:selectItem itemValue = "" itemLabel = "--select--" /> 
+                      <f:selectItem itemValue = "1" itemLabel = "Alexis" />             
+                          </h:selectOneMenu> 
+                       <h:message for="staffid" class="text-danger"/>
+                     </div>
+                    
+                     <div class="form-group">
+                   <h:outputLabel value="Product name"  styleClass="control-label " />
+                   <h:selectOneMenu required="true"  value = "#{StoreBean.description}" id="productname" styleClass="form-control" requiredMessage="Product name is required"> 
+                      <f:selectItem itemValue = "" itemLabel = "--select--" /> 
+                      <f:selectItems value="#{StoreBean.favoriteCar2Value}"/>
+                   </h:selectOneMenu> 
+                       <h:message for="productname" class="text-danger"/>
+                     </div>
+    
+                    <div class="form-group">
+                   <h:outputLabel value="Quantity" styleClass="control-label "  />
+
+                   <h:inputText id="quantity" autocomplete="off" value="#{Staffhistory.quantity}"  styleClass="form-control" required="true" requiredMessage="Quantity is required" />
+                           <h:message for="quantity" class="text-danger"/>
+                </div>
+
+                <div class="form-group ">
+                    <h:commandButton value="Submit" class="btn btn-info btn-block" action="#{Staffhistory.DonnateTOstaff}"/><br></br>
+                </div>
+              </h:form>       
+                
+            </div>
+            
+        <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">...</div>
+        </div>
+          </div>  
+              </div>
+            <!-- End Tabbed menu-->  
+
+              </div>
+
+    </ui:define>
+  </ui:composition> 
+</html>

@@ -1,0 +1,94 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:pt="http://java.sun.com/jsf/passthrough"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+  <ui:composition template="/WEB-INF/include/template.xhtml">
+   
+      <ui:define name="head">
+        <!-- Custom styles for this template -->
+        <h:outputStylesheet name="css/style.css"/>
+    </ui:define>
+      
+    <ui:define name="body">
+        
+         <ui:include src="include_navmenu.xhtml"/>  <!-- include navbar -->
+
+        <div class="container">
+           
+          <!--Tabbed nav-->  
+          <div class="col-lg-10 ">
+              <div class="tabsdiv offset-3 mt-5">
+                  <h3 class="text-danger">Register a new staff into Store Management system</h3>
+        <nav>
+        <div class="nav nav-tabs " id="nav-tab" role="tablist">
+          <a class="nav-item nav-link active" id="nav-home-tab" data-toggle="tab" href="#nav-home" role="tab" aria-controls="nav-home" aria-selected="true">Register</a>
+          <a class="nav-item nav-link" id="nav-profile-tab" data-toggle="tab" href="#nav-profile" role="tab" aria-controls="nav-profile" aria-selected="false">All staff</a>
+        </div>
+        </nav>
+        <div class="tab-content" id="nav-tabContent">
+            <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
+               
+                <h:form id="StaffForm" styleClass="form-horizontal col-md-8 offset-2 mt-5">
+                           
+
+                       <div class="form-group">
+                        <h:outputLabel value="Full name" styleClass="control-label " />
+                       
+                        <h:inputText id="fullne" autocomplete="off" value="#{UserManagedBean.fullname}" styleClass="form-control" required="true"  requiredMessage="Names are required" />
+                            <h:message for="fullne" class="text-danger"/>
+                    </div>
+                     <div class="form-group">
+                        <h:outputLabel value="Email"  styleClass="control-label " />
+                            <h:inputText id="ema" autocomplete="off" value="#{UserManagedBean.email}"  styleClass="form-control" required="true" requiredMessage="Email is required" >
+                                   </h:inputText>   
+                            <h:message for="ema" class="text-danger"/>
+                     </div>
+                    
+                     <div class="form-group">
+                     <h:outputLabel value="Department"  styleClass="control-label " />
+
+                      <h:selectOneMenu required="true"  value = "#{UserManagedBean.department}" id="department" styleClass="form-control" requiredMessage="Department is required"> 
+                      <f:selectItem itemValue = "" itemLabel = "--select--" /> 
+                      <f:selectItem itemValue = "it" itemLabel = "IT" /> 
+                      <f:selectItem itemValue = "registrar" itemLabel = "Registrar" /> 
+                        <f:selectItem itemValue = "finance" itemLabel = "Finance" /> 
+                        <f:selectItem itemValue = "library" itemLabel = "Library" /> 
+                        <f:selectItem itemValue = "deans" itemLabel = "Deans" /> 
+                          </h:selectOneMenu> 
+                       <h:message for="department" class="text-danger"/>
+                     </div>
+
+                       
+                         <div class="form-group">
+                        <h:outputLabel value="Address" styleClass="control-label "  />
+                        
+                        <h:inputText id="address" autocomplete="off" value="#{UserManagedBean.address}"  styleClass="form-control" required="true" requiredMessage="Address is required" />
+                                <h:message for="address" class="text-danger"/>
+                     </div>
+                       
+                         <div class="form-group">
+                        <h:outputLabel value="Phonenumber" styleClass="control-label "  />
+                            <h:inputText id="phonenumber" autocomplete="off" value="#{UserManagedBean.phonenumber}"  styleClass="form-control" required="true" requiredMessage="Phone number" />
+                                <h:message for="phonenumber" class="text-danger"/>
+                         </div>
+                                
+                     <div class="form-group ">
+                         <h:commandButton value="Add staff" class="btn btn-info btn-block" action="#{UserManagedBean.AddStaff}"/><br></br>
+                     </div>
+                   </h:form>      
+                
+            </div>
+        <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">...</div>
+        </div>
+          </div>  
+              </div>
+            <!-- End Tabbed menu-->  
+
+              </div>
+
+    </ui:define>
+  </ui:composition> 
+</html>
