@@ -81,7 +81,48 @@
                    </h:form>      
                 
             </div>
-        <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">...</div>
+          
+            
+            <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
+                
+                <h2 class="mt-5 ml-2">Registered staff details</h2>
+                <div class="col-lg-12">
+                <h:dataTable  class="table table-bordered table-striped mt-4" value="#{UserManagedBean.allUsers}" var="staff"  >
+		<h:column>
+			<f:facet name="header" >Names</f:facet>
+         #{staff.fullname}
+      </h:column>
+		<h:column>
+			<f:facet name="header">Email</f:facet>
+         #{staff.email}
+      </h:column>
+		<h:column>
+			<f:facet name="header">Telephone</f:facet>
+           #{staff.phonenumber}
+       </h:column>
+        
+                    <h:column>
+			<f:facet name="header">Department</f:facet>
+           #{staff.department}
+       </h:column>
+       
+                    <h:column>
+			<f:facet name="header">Address</f:facet>
+           #{staff.address}
+       </h:column>
+            
+            <h:column>
+			<f:facet name="header">Created</f:facet>
+           #{staff.created}
+            </h:column>
+                    
+                 
+                    
+                    
+		
+	</h:dataTable>
+                </div>
+            </div>
         </div>
           </div>  
               </div>

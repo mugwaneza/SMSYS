@@ -23,3 +23,6 @@
 
     put boostrap in JSF : https://www.codementor.io/@howardungar/getting-started-with-bootstrap-and-jsf-6bofntdov
                           https://examples.javacodegeeks.com/enterprise-java/jsf/jsf-bootstrap-example/ 
+
+
+    Fetch data from mysql to html JSF table : https://www.journaldev.com/7068/jsf-database-example-mysql-jdbc

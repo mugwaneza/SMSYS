@@ -9,6 +9,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 import javax.annotation.ManagedBean;
 import javax.inject.Named;
@@ -30,15 +32,23 @@ public class UserManagedBean {
     private String department;
     private String address;
     private String phonenumber;
+    private String created;
     
     Connection conn = null;
     PreparedStatement pst =null;
+    private int Id;        
             
-            
+   
+   
+   public void setId(int Id) {
+          this.Id = Id;
+    }
     
-
-   private Map<String,Object> sessionMap = FacesContext.getCurrentInstance().getExternalContext().getSessionMap(); 
-    
+      public Integer getId() {
+        return Id;
+    }   
+   
+   
         /**
 * @param fullname the fullname to set
 */
@@ -92,6 +102,13 @@ public class UserManagedBean {
      
       public String getDepartment() {
         return department;
+    }
+     public void setCreated(String created) {
+          this.created = created;
+    }
+     
+      public String getCreated() {
+        return created;
     }
       
    public String Adduser(){
@@ -159,7 +176,7 @@ public class UserManagedBean {
             System.out.println(e);
                    }
                
-        return "/dashboard.xhtml?faces-redirect=true" ;  
+        return "/manage_staff.xhtml?faces-redirect=true" ;  
              }
                    
              return null;
@@ -184,13 +201,11 @@ public class UserManagedBean {
 //            sessionMap.put("editcategory", obj_Category);
               
               if(myemail.equals(email) && mypassword.equals(password)){
-              sessionMap.put("mysessionid", myid);          
-             return "/register.xhtml?faces-redirect=true" ;  
+             return "/dashboard.xhtml?faces-redirect=true" ;  
               }
               else{
                   
              return "/index.xhtml?faces-redirect=true" ;   
-
               }
         
             }
@@ -214,9 +229,62 @@ public class UserManagedBean {
             System.out.println(e);
         }    
        return false;   
-    }
+      }
+     
+    // get the list of all staff
+    public List<UserManagedBean> getAllUsers(){  
+       List allUsers = new ArrayList<UserManagedBean>();
+         try{
+             conn = Connectordb.connectDb();      
+              String sqlstaff ="select *  from staff ";
+               pst = conn.prepareStatement(sqlstaff);
+              ResultSet rs = pst.executeQuery();             
+              while(rs.next()){
+                          UserManagedBean user = new UserManagedBean();       
+
+                        user.setId(rs.getInt("id"));
+                        user.setFullname(rs.getString("fullname"));
+                        user.setEmail(rs.getString("email"));
+                        user.setPhonenumber(rs.getString("phonenumber"));
+                        user.setAddress(rs.getString("address"));
+                        user.setDepartment(rs.getString("department"));
+                        user.setCreated(rs.getString("created"));                      
+                        allUsers.add(user);
+                     }
+                    }catch (Exception e) {
+                     System.out.println(e);
+                     }
+
+        return allUsers;   
+      }
     
+    
+        // Get the list of all storekeepers
+          public List<UserManagedBean> getStorekeeper(){
+            
+            List storekeeper = new ArrayList<UserManagedBean>();
+         
+                try{
+             conn = Connectordb.connectDb();
+             String sql ="select *  from users ";
+             PreparedStatement pststore = conn.prepareStatement(sql);
+              ResultSet rs = pststore.executeQuery();
+            while(rs.next()){
+              
+                UserManagedBean user = new UserManagedBean();
+ 
+                        user.setFullname(rs.getString("fullname"));
+                        user.setEmail(rs.getString("email"));
+                        user.setPassword(rs.getString("password"));
+                        user.setCreated(rs.getString("created"));                      
+                        storekeeper.add(user);
+             }      
+           }catch (Exception e) {
+            System.out.println(e);
+        }                
+    return storekeeper;
     }
+}
 
 
 

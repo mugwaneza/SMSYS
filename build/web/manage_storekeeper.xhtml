@@ -18,7 +18,7 @@
 
          <div class="container">
             
-          <!--Tabbed nav-->  
+          <!--All storekeepers -->  
           <div class="col-lg-10 ">
               <div class="tabsdiv offset-3 mt-5">
                   <h3 class="text-danger">All Storekeepers</h3>
@@ -30,8 +30,32 @@
         </div>
         </nav>
         <div class="tab-content" id="nav-tabContent">
-        <div class="tab-pane fade " id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">...</div>
-        
+        <div class="tab-pane fade " id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">  
+               <h2 class="mt-5 ml-2">Registered Storekeepers details</h2>
+                <div class="col-lg-12">
+                    <h:dataTable  class="table table-bordered table-striped mt-4" value="#{UserManagedBean.storekeeper}" var="users"  >
+		<h:column>
+			<f:facet name="header" >Names</f:facet>
+         #{users.fullname}
+      </h:column>
+		<h:column>
+			<f:facet name="header">Email</f:facet>
+         #{uers.email}
+      </h:column>
+		<h:column>
+			<f:facet name="header">Password</f:facet>
+           #{users.password}
+       </h:column>
+   
+            <h:column>
+			<f:facet name="header">Created</f:facet>
+           #{users.created}
+       </h:column>
+		
+	</h:dataTable>
+                </div>
+        </div>
+        <!-- End all storekeepers -->
         
              <!--Add to store products-->
           <div class="tab-pane fade show active" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
@@ -75,7 +99,41 @@
         
         
         
-        <div class="tab-pane fade" id="nav-store" role="tabpanel" aria-labelledby="nav-store-tab">...</div>
+        <div class="tab-pane fade" id="nav-store" role="tabpanel" aria-labelledby="nav-store-tab">
+        
+              <h2 class="mt-5 ml-2">Store details</h2>
+                <div class="col-lg-12">
+                    <h:dataTable  class="table table-bordered table-striped mt-4" value="#{StoreBean.storeproduct}" var="store"  >
+		<h:column>
+			<f:facet name="header" >Product name</f:facet>
+         #{store.productname}
+      </h:column>
+		<h:column>
+			<f:facet name="header">Balance qty </f:facet>
+         #{store.quantity}
+      </h:column>
+		<h:column>
+			<f:facet name="header">Description</f:facet>
+           #{store.description}
+       </h:column>
+   
+            <h:column>
+			<f:facet name="header">Created</f:facet>
+           #{store.created}
+       </h:column>
+                        
+            <h:column>
+         <f:facet name="header">Edit</f:facet>
+         <button class="btn-info btn-sm">Edit</button>
+    </h:column>
+     <h:column>
+         <f:facet name="header">Delete</f:facet>
+         <button class="btn-danger btn-sm">Delete</button>
+  </h:column>
+		
+	</h:dataTable> 
+        </div>
+        </div>
         </div>
           </div>  
               </div>

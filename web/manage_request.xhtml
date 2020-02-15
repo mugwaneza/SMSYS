@@ -4,7 +4,8 @@
       xmlns:ui="http://java.sun.com/jsf/facelets"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:pt="http://java.sun.com/jsf/passthrough"
-      xmlns:f="http://xmlns.jcp.org/jsf/core">
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
   <ui:composition template="/WEB-INF/include/template.xhtml">
    
       <ui:define name="head">
@@ -37,21 +38,28 @@
                       <div class="tabsdiv offset-3 mt-5">
                     <h5 class="text-success">Donate materials to staff</h5>
                       </div><br></br>
-              
+                  
+                      <!--Loop all registered staff from database to the following dropdown -->
                      <div class="form-group">
                      <h:outputLabel value="Staff name"  styleClass="control-label " />   
                      <h:selectOneMenu required="true"  value = "#{Staffhistory.staff_id}" id="staffid" styleClass="form-control" requiredMessage="Staff name is required"> 
                       <f:selectItem itemValue = "" itemLabel = "--select--" /> 
-                      <f:selectItem itemValue = "1" itemLabel = "Alexis" />             
+                       <c:forEach items="#{UserManagedBean.allUsers}" var="item">  
+                         <f:selectItem itemValue="#{item.id}" itemLabel="#{item.fullname}" />  
+                         </c:forEach> 
                           </h:selectOneMenu> 
+ 
                        <h:message for="staffid" class="text-danger"/>
                      </div>
-                    
+                   
+                      <!--Loop all registered matrials from database to the following dropdown-->
                      <div class="form-group">
                    <h:outputLabel value="Product name"  styleClass="control-label " />
-                   <h:selectOneMenu required="true"  value = "#{StoreBean.description}" id="productname" styleClass="form-control" requiredMessage="Product name is required"> 
-                      <f:selectItem itemValue = "" itemLabel = "--select--" /> 
-                      <f:selectItems value="#{StoreBean.favoriteCar2Value}"/>
+                   <h:selectOneMenu required="true"  value = "#{Staffhistory.product_id}"  styleClass="form-control" id="productname" requiredMessage="Product name is required"> 
+                       <f:selectItem itemValue="" itemLabel="-- Select product" />  
+                       <c:forEach items="#{StoreBean.storeproduct}" var="item">  
+                           <f:selectItem itemValue="#{item.id}" itemLabel="#{item.productname}" />  
+                         </c:forEach>  
                    </h:selectOneMenu> 
                        <h:message for="productname" class="text-danger"/>
                      </div>
@@ -70,7 +78,36 @@
                 
             </div>
             
-        <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">...</div>
+        <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
+            
+             
+                <h2 class="mt-5 ml-2">Report of given materials to staff </h2>
+
+                <h:dataTable  class="table table-bordered table-striped mt-4" value="#{Staffhistory.listhistory}" var="hist">
+                <h:column>
+                        <f:facet name="header" >Recepient Names</f:facet>
+                #{hist.fullname}
+                </h:column>
+                <h:column>
+                        <f:facet name="header">Given quantity</f:facet>
+                    #{hist.quantity}
+                </h:column>
+                <h:column>
+                        <f:facet name="header">Product name</f:facet>
+                #{hist.productname}
+                </h:column>
+
+                    <h:column>
+                        <f:facet name="header">Department</f:facet>
+                #{hist.department}
+                </h:column>
+               <h:column>
+                <f:facet name="header">Done on</f:facet>
+                #{hist.created}
+                </h:column>
+
+                </h:dataTable>
+        </div>
         </div>
           </div>  
               </div>
